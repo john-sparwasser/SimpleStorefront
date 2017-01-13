@@ -22,7 +22,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($userAdmin);
         $manager->flush();
     }
-    
+
     public function getOrder()
     {
         return 1;

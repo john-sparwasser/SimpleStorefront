@@ -1,0 +1,35 @@
+// Helpers
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+@mixin border-radius($radius) {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+@mixin linear-gradient($color) {
+    $start: lighten($color, 2%);
+    $finish: darken($color, 2%);
+    background-color: $color;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, $start),color-stop(100%, $finish));
+    background: -moz-linear-gradient($start,$finish);
+    background: -webkit-linear-gradient($start,$finish);
+    background: linear-gradient($start,$finish);
+}
+
+@mixin remove-input-outline() {
+    &:focus {
+        outline:0;
+    }
+}
+
+@mixin clear-flex() {
+    align-self: center;
+    flex: 0 0 auto;
+}

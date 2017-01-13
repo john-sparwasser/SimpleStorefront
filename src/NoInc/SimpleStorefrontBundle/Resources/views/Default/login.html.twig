@@ -1,0 +1,35 @@
+{% extends 'NoIncSimpleStorefrontBundle:Default:base.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %} 
+
+<div class="login column width-320">
+
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form class="login-form" action="{{ path("fos_user_security_check") }}" method="post">
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% endif %}
+        <div>
+            <input type="text" id="username" name="_username" value="" required="required" placeholder="Username">
+        </div>
+
+        <div>
+            <input type="password" id="password" name="_password" required="required" placeholder="Password">
+        </div>
+
+        <div>
+            <label for="remember_me"><input type="checkbox" id="remember_me" name="_remember_me" value="on"> Remember Me</label>
+        </div>
+
+        <div>
+            <input class="button" type="submit" id="_submit" name="_submit" value="Login">
+        </div>
+    </form>
+</div>
+
+{% endblock %}

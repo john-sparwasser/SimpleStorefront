@@ -1,0 +1,170 @@
+$main-color:#D4F4DD;
+
+header {
+    min-height:80px;
+    background-color:$main-color;
+    padding:1px;
+    h3.logo { 
+        margin:18px 0 0 0;
+        font-size: 27px;
+        letter-spacing: 2.5px;
+        a {
+            text-decoration:none !important;
+            font-weight:400;
+        }
+    }
+    .button {
+        margin-top:13px;
+        margin-left:1rem;
+    }
+}
+
+.login {
+    margin:3rem auto 0 auto;
+    .login-form {
+        div {
+            margin:1rem auto;
+            input[type="text"], input[type="password"] {
+                width:100%;
+            }
+        }
+    }
+}
+
+.product {
+    background-color:$main-color;
+    margin:1rem;
+    padding:1rem;
+    position:relative;
+    height:243px;
+    &.with-image {
+        height:443px;
+        .bottom {
+            margin-top:178px;
+        }
+        h2 {
+            color:#fff !important;
+            text-shadow:3px 3px 10px rgba(150, 150, 150, 1);
+        }
+        .top {
+            position:relative;
+            z-index:2;
+        }
+        .price-container {
+            top:-10px;
+            left:-10px;
+        }
+        .make-one-container {
+            top:-10px;
+            right:-10px;
+        }
+    }
+    .recipe-image {
+        height: 200px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        background: red;
+        left: 0px;
+        z-index:1;
+    }
+        .price-container {
+        position:absolute;
+        top:0;
+        left:0;
+        .price {
+            margin: 0;
+            padding: 1rem;
+            background-color: #E84855;
+            color: #fff;
+            border-bottom-right-radius: 5px;
+        }
+    }
+    .make-one-container {
+        position:absolute;
+        top:0;
+        right:0;
+        background-color: #1ABC9C;
+        height:40px;
+        width:40px;
+        text-align:center;
+        border-radius:0;
+        border-bottom-left-radius: 5px;
+        &:hover {
+            background-color: darken(#1ABC9C, 4%);
+        }
+        button {
+            margin:0;
+            padding:12px;
+            color: #fff;
+            border-radius:0;
+            border-bottom-left-radius: 5px;
+            background:transparent !important;
+        }
+    }
+    h2 {
+        color:#1ABC9C;
+        font-weight:400;
+        margin-top:0;
+        z-index:2;
+    }
+    h2, p {
+        text-align:center;
+    }
+    ul {
+        padding-left:2rem;
+        list-style:none;
+        .fa-flask {
+            color:#E84855;
+        }
+    }
+    p.ingredient-label {
+        text-align:left;
+        margin-left:1rem;
+        color:#444;
+    }
+    footer {
+        margin-left:-1rem;
+        position:absolute;
+        bottom:0;
+        text-align:center;
+        width:100%;
+        .image-upload {
+            margin:1rem auto;
+        }
+    }
+}
+
+.table-striped {
+    margin-top:25px;
+    width:100%;
+    th {
+        padding:10px;
+    }
+    td {
+        padding:5px;
+    }
+}
+
+.margin-top {
+    margin:1rem auto 0 auto;
+}
+
+.checkout-form {
+    & > div {
+        margin:1rem;
+    }
+    input {
+        width:100%;
+    }
+    .row .first {
+        padding-right:5px;
+    }
+    .row .second {
+        padding-left:5px;
+    }
+    .error {
+        color: red;
+        display:none;
+    }
+}

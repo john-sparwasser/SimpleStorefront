@@ -1,0 +1,36 @@
+@mixin inputs($main-color, $secondary-color, $tertiary-color, $font-color) {
+    input[type=text], input[type=email], input[type=password], input[type=number] {
+        @include border-radius(5px);
+        @include remove-input-outline();
+        @include clear-flex();
+        padding: 14px;
+        margin: 0;
+        font-size: 18px;
+        color: $font-color;
+        background-color: #f9fafc;
+        border: 1px solid #eef0f3;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        -webkit-tap-highlight-color: transparent;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        -moz-transition-property: color,background-color,border-color,border-radius;
+        -o-transition-property: color,background-color,border-color,border-radius;
+        -webkit-transition-property: color,background-color,border-color,border-radius;
+        transition-property: color,background-color,border-color,border-radius;
+        -moz-transition-duration: 0.2s;
+        -o-transition-duration: 0.2s;
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        &:hover {
+            border:1px solid darken(#eef0f3, 20%);
+        }
+        &:focus {
+            border:1px solid $main-color;
+        }
+    }
+}

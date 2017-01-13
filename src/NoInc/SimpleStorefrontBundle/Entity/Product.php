@@ -36,6 +36,13 @@ class Product
     protected $recipe_id;
 
     /**
+     * ID of the Recipe that created this Product
+     *
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    protected $sold;
+
+    /**
      * Time this product was created
      *
      * @ORM\Column(type="integer", nullable=false)
@@ -48,8 +55,15 @@ class Product
      */
     protected $recipe;
 
+    /**
+     * Cart Item has one product
+     * @ORM\OneToOne(targetEntity="CartItem", inversedBy="product")
+     */
+    protected $cartItem;
+
     public function __construct()
     {
+        $this->sold = false;
     }
 
     /**
@@ -142,6 +156,52 @@ class Product
     public function getRecipe()
     {
         return $this->recipe;
+    }
+
+    /**
+     * Associated CartItem entity to this.
+     *
+     * @param \NoInc\SimpleStorefrontBundle\Entity\CartItem $cartItem
+     * @return \NoInc\SimpleStorefrontBundle\Entity\Product
+     */
+    public function setCartItem(CartItem $cartItem)
+    {
+        $this->cartItem = $cartItem;
+
+        return $this;
+    }
+
+    /**
+     * Get CartItem entity (one to one).
+     *
+     * @return \NoInc\SimpleStorefrontBundle\Entity\CartItem
+     */
+    public function getCartItem()
+    {
+        return $this->cartItem;
+    }
+
+
+    /**
+     * Set Product as sold
+     *
+     * @return void
+     */
+    public function getSold()
+    {
+        return $this->sold;
+    }
+
+    /**
+     * Set Product as sold
+     *
+     * @return \NoInc\SimpleStorefrontBundle\Entity\Product
+     */
+    public function setAsSold()
+    {
+        $this->sold = true;
+
+        return $this;
     }
 
     public function __sleep()

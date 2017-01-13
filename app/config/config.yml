@@ -8,6 +8,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    aws_config: "%kernel.root_dir%/../aws.ini"
 
 framework:
     #esi:             ~
@@ -28,7 +29,7 @@ framework:
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.native_file
-        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+        save_path:   "/var/lib/php/sessions"
     fragments:       ~
     http_method_override: true
     assets: ~
@@ -37,6 +38,7 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    cache:            true
 
 # Doctrine Configuration
 doctrine:

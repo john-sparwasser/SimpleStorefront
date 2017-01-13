@@ -5,59 +5,52 @@
     <meta name="generator" content="Script Eden ( http://scripteden.net/ ) Template Builder v2.0.0">  
     <!--pageMeta-->
 
-    {% block stylesheets %}
-        {% stylesheets 
-        	'bundles/app/css/*' 
-            '@NoIncSimpleStorefrontBundle/Resources/public/bootstrap/css/bootstrap.css'
-            '@NoIncSimpleStorefrontBundle/Resources/public/css/flat-ui.css'
-            '@NoIncSimpleStorefrontBundle/Resources/public/css/style.css'
-            '@NoIncSimpleStorefrontBundle/Resources/public/css/style.complete.css'
-        filter='cssrewrite' %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
-    {% endblock %}
-    
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
-    
-    <!--headerIncludes-->
-     
-    
 </head>
 
+<body>
 
+    {% if header.show() %}
+        <header>
+            <div class="content-column group space-between">
+                <div>
+                    <h3 class="logo"><a class="primary-color" href="/">PotentPotables</a></h3>
+                </div>
+                <div class="group">
+                    {% if cart_helper and cart_helper.hasCart() %}
+                        <div>
+                        {% if cart_helper.hasOneItem() %}
+                            <span>{{ cart_helper.getCartItemCount() }} Item (${{ cart_helper.getCartTotal() }})</span> <a href="/checkout" class="button" role="button">Checkout</a></div>
+                        {% else %}
+                            <span>{{ cart_helper.getCartItemCount() }} Items (${{ cart_helper.getCartTotal() }})</span> <a href="/checkout" class="button" role="button">Checkout</a></div>
+                        {% endif %}
+                    {% endif %}
+                    {% if header.showDashboardButton() %}
+                        <a href="/admin" class="button" role="button">Dashboard</a>
+                    {% endif %}
+                    {% if header.showLogin() %}
+                        <a href="/login" class="button" role="button">Login</a>
+                    {% elseif header.showLogout() %}
+                        <a href="/logout" class="button" role="button">Logout</a>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+    {% endif %}
 
+    {% block body %} 
 
-<body>   
-	{% block body %} 
-	
     {% endblock %}
-    
+
     <!-- Load JS here for greater good =============================-->
-    {% block javascripts %}
-        {% javascripts 
-        	'@NoIncSimpleStorefrontBundle/Resources/public/js/*' 
-            '@NoIncSimpleStorefrontBundle/Resources/public/js/jquery-1.8.3.min.js'
-            '@NoIncSimpleStorefrontBundle/Resources/public/js/jquery-ui-1.10.3.custom.min.js'
-            '@NoIncSimpleStorefrontBundle/Resources/public/js/jquery.ui.touch-punch.min.js'
-            '@NoIncSimpleStorefrontBundle/Resources/public/js/bootstrap.min.js'
-            '@NoIncSimpleStorefrontBundle/Resources/public/js/bootstrap-select.js'
-            '@NoIncSimpleStorefrontBundle/Resources/public/js/bootstrap-switch.js'
-            '@NoIncSimpleStorefrontBundle/Resources/public/js/flatui-checkbox.js'
-            '@NoIncSimpleStorefrontBundle/Resources/public/js/flatui-radio.js'
-            '@NoIncSimpleStorefrontBundle/Resources/public/js/jquery.tagsinput.js'
-            '@NoIncSimpleStorefrontBundle/Resources/public/js/jquery.placeholder.js'
-        	'@NoIncSimpleStorefrontBundle/Resources/public/js/jquery.nivo.slider.pack.js'
-            '@NoIncSimpleStorefrontBundle/Resources/public/js/application.js'
-        	'@NoIncSimpleStorefrontBundle/Resources/public/js/over.js'
-        %}
-        	<script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% endblock %}
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="/js/jquery.payment.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="https://use.fontawesome.com/d57616cb58.js"></script>
 
 </body>
 </html>

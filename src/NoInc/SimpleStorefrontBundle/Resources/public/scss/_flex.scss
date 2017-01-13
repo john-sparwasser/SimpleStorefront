@@ -1,0 +1,14 @@
+@mixin flex($content-width) {
+    .group {
+        display: flex;
+        &.centered {
+            justify-content:center;
+        }
+        &.space-between {
+            justify-content:space-between;
+        }
+        &.wrap {
+            flex-wrap:wrap;
+        }
+    }
+}

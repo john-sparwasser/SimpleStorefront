@@ -1,37 +1,50 @@
-<div class="col-md-4"> 
-<form action="{{ path('make_recipe', {'recipe_id': recipe.id}) }}" method="post">
+<div class="third"> 
 
-	<div class="pricing1">
-	
-		<div class="top">
-		
-			<h2 class="editContent">{{ recipe.name }}</h2>
-			
-			<p class="price "><b class="editContent">${{ recipe.price }}</b></p>
-		
-		</div><!-- /.top -->
-		
-		
-		<div class="bottom">
-			
-			<div class="editContent">
-			<span>Ingredients</span>
-			<ul>
-				{% for recipeIngredient in recipe.recipeIngredients %}
-				<li><i>{{ recipeIngredient.quantity }} {{ recipeIngredient.ingredient.measure }}</i> of <b>{{ recipeIngredient.ingredient.name }}</b></li>
-				{% endfor %}
-			</ul>
-			</div><!-- /.editContent -->
-			
-			{% set remainingProducts = recipe.products|length %}
-			
-			<button type="submit" class="btn btn-lg btn-embossed btn-block btn-primary"><span class="fa"></span>Make One</button>
-			
-			<span>{{ remainingProducts }} Remaining</span>
-			
-		</div><!-- /.bottom -->
-	
-	</div><!-- /.pricing1 -->
+    {% if recipe.hasImage() %}
+        <div class="product with-image">
+            <div class="recipe-image" style="background:url('{{recipe.getImageUrl()}}');"></div>
+        {% else %}
+        <div class="product">
+        {% endif %}
+    
+        <div class="top">
 
-</form>
+            <h2 class="editContent">{{ recipe.name }}</h2>
+
+            <div class="price-container"><p class="price">${{ recipe.price }}</p></div>
+            <div class="make-one-container">
+                <form action="{{ path('make_recipe', {'recipe_id': recipe.id}) }}" method="post">
+                        <button type="submit" class="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </form>
+            </div>
+
+        </div><!-- /.top -->
+
+
+        <div class="bottom">
+
+            <div class="editContent">
+            <p class="ingredient-label">Ingredients</p>
+            <ul>
+                {% for recipeIngredient in recipe.recipeIngredients %}
+                <li><i class="fa fa-flask" aria-hidden="true"></i> <i>{{ recipeIngredient.quantity }} {{ recipeIngredient.ingredient.measure }}</i> of <b>{{ recipeIngredient.ingredient.name }}</b></li>
+                {% endfor %}
+            </ul>
+            </div><!-- /.editContent -->
+
+            {% set remainingProducts = recipe.getActiveProducts()|length %}
+
+            <footer>
+                <div>
+                                        <form action="{{ path('upload_image', {'recipe_id': recipe.id}) }}" enctype="multipart/form-data" method="post">
+                        <input name="image_file" type="file" class="image-upload" value="Upload Image" />
+                    </form>
+                </div>
+                <p>{{ remainingProducts }} in stock</p>
+            </footer>
+
+        </div><!-- /.bottom -->
+
+    </div><!-- /.pricing1 -->
+
 </div><!-- /.col-md-4 col -->

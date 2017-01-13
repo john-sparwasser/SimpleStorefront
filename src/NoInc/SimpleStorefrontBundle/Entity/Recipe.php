@@ -44,6 +44,13 @@ class Recipe
     protected $price;
 
     /**
+     * Image url that contains the url to the recipe image
+     *
+     * @ORM\Column(type="string", length=256, nullable=true)
+     */
+    protected $image_url;
+
+    /**
      * @ORM\OneToMany(targetEntity="Product", mappedBy="recipe")
      * @ORM\JoinColumn(name="id", referencedColumnName="recipe_id", nullable=false)
      */
@@ -200,6 +207,32 @@ class Recipe
     public function getRecipeIngredients()
     {
         return $this->recipeIngredients;
+    }
+
+    public function setImageUrl(string $imageUrl)
+    {
+        $this->image_url = $imageUrl;
+    }
+
+    public function getImageUrl()
+    {
+        return $this->image_url;
+    }
+
+    public function hasImage()
+    {
+        return $this->image_url !== null;
+    }
+
+    public function getActiveProducts()
+    {
+        $return = [];
+        foreach ($this->products as $product) {
+            if (!$product->getSold()) {
+                $return[] = $product;
+            }
+        }
+        return $return;
     }
 
     public function __sleep()

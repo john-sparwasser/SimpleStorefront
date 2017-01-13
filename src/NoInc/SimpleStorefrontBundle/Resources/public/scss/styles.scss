@@ -1,0 +1,13 @@
+body {
+    font-family: 'Lato', Helvetica, Arial, sans-serif;
+}
+
+@import 'bootstrap/bootstrap-theme';
+@import 'bootstrap/bootstrap';
+@import 'includes';
+
+// Construct with defaults:
+@include construct(1024px, #1ABC9C, #96C5F7, #768093, #1d1d1f);
+
+@import 'simplestorefront';
+

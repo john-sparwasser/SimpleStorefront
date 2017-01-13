@@ -1,0 +1,38 @@
+{% extends 'NoIncSimpleStorefrontBundle:Default:base.html.twig' %}
+
+{% block body %} 
+
+<div class="login column width-320">
+
+    <h4>Total: ${{cart_helper.getCartTotal()}}</h4>
+
+
+    <form id="checkout_form" class="checkout-form" action="{{ path("perform_checkout") }}" method="post">
+        <h4 id="error" class="error"></h4>
+        <div>
+            <input type="text" id="email" name="email" value="" required="required" placeholder="Email">
+        </div>
+
+        <div>
+            <input type="text" id="ccnum" required="required" placeholder="Credit Card Number">
+        </div>
+
+        <div class="row">
+            <div class="half cell first">
+                <input type="text" id="ccexp" required="required" placeholder="Exp">
+            </div>
+            <div class="half cell second">
+                <input type="text" id="cvc" required="required" placeholder="CVC">
+            </div>
+        </div>
+
+        <input name="customer_token" type="hidden" id="customer_token" value="" />
+
+        <div>
+            <input class="button" type="button" id="_submit" name="_submit" value="Purchase">
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+

@@ -4,6 +4,8 @@
 # Begin Script
 $script = <<SCRIPT
 
+export DEBIAN_FRONTEND=noninteractive
+
 echo "Provisioning virtual machine..."
 echo "Updating aptitude"
 apt-get update -y
@@ -125,7 +127,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, ip: "192.168.33.10"
 
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "4096"]
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     vb.customize ["modifyvm", :id, "--cpus", 2]
@@ -134,10 +136,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Copy over SimpleStorefront code to vagrant
   config.vm.synced_folder ".", "/home/vagrant/SimpleStorefront", type: "rsync", rsync__auto: false, rsync__exclude: [
-   	".git/",
-   	".vagrant/",
-   	"var/cache/",
-   	"vendor/"
+    ".git/",
+    ".vagrant/",
+    "var/cache/",
+    "vendor/"
   ]
 
   # Copy over ssh keys to vagrant

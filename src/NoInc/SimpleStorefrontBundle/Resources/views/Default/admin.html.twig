@@ -1,21 +1,42 @@
 {% extends 'NoIncSimpleStorefrontBundle:Default:base.html.twig' %}
 
 {% block body %} 
-	<div class="item pricing" id="pricing_table1">
-		
-		<div class="container">
-		
-			<div class="row">
-			
-				{% for recipe in recipes %}
-				    {% include 'NoIncSimpleStorefrontBundle:Default:product-make.html.twig' with {'recipe': recipe} %}
-				{% endfor %}
-			
-			</div><!-- /.row -->
-		
-		</div><!-- /.container -->
-	
-	</div><!-- /.item -->
-	
-	{{ dump(recipes) }}
+    <div class="content-column margin-top">
+
+    <!-- Tab header -->
+    <ul id="admin-tablist" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Recipes</a></li>
+        <li role="presentation"><a href="#ingredients" aria-controls="ingredients" role="tab" data-toggle="tab">Ingredients</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <div class="group wrap margin-top">
+                {% for recipe in recipes %}
+                    {% include 'NoIncSimpleStorefrontBundle:Default:product-make.html.twig' with {'recipe': recipe} %}
+                {% endfor %}
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="ingredients">
+            <table class="table-striped">
+                <tr>
+                    <th>Ingredient</th>
+                    <th>Price</th>
+                    <th>Measure</th>
+                    <th>Stock</th>
+                </tr>
+                {% for ingredient in ingredients %}
+                    <tr>
+                        <td>{{ ingredient.name }}</td>
+                        <td>${{ ingredient.price }}</td>
+                        <td>{{ ingredient.measure }}</td>
+                        <td>{{ ingredient.stock }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    
+   </div><!-- /.group -->
 {% endblock %}

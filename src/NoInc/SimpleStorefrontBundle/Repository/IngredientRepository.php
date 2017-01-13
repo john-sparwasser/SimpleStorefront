@@ -10,4 +10,13 @@ namespace NoInc\SimpleStorefrontBundle\Repository;
  */
 class IngredientRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getIngredientByName(string $name)
+    {
+        return $this->findOneBy(['name' => $name]);
+    }
+
+    public function getAll()
+    {
+        return $this->findAll();
+    }
 }

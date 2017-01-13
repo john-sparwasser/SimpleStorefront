@@ -1,0 +1,9 @@
+// Main constructer that initializes the framework
+@mixin construct($content-width, $main-color, $secondary-color, $tertiary-color, $font-color) {
+    @include normalize();
+    @include grid($content-width);
+    @include flex($content-width);
+    @include buttons($main-color, $secondary-color, $tertiary-color, $font-color);
+    @include inputs($main-color, $secondary-color, $tertiary-color, $font-color);
+    @include common($main-color, $secondary-color, $tertiary-color, $font-color);
+}
