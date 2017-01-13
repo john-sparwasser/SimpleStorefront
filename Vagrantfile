@@ -4,8 +4,6 @@
 # Begin Script
 $script = <<SCRIPT
 
-export DEBIAN_FRONTEND=noninteractive
-
 echo "Provisioning virtual machine..."
 echo "Updating aptitude"
 apt-get update -y
@@ -42,6 +40,7 @@ apt-get install -y php7.0-readline
 apt-get install -y php-redis
 apt-get install -y php7.0-xml
 apt-get install -y php7.0-zip
+apt-get install -y php7.0-mbstring
 
 echo "Installing Composer"
 curl -sS https://getcomposer.org/installer | /usr/bin/php -- --install-dir=/usr/bin --filename=composer
@@ -136,10 +135,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Copy over SimpleStorefront code to vagrant
   config.vm.synced_folder ".", "/home/vagrant/SimpleStorefront", type: "rsync", rsync__auto: false, rsync__exclude: [
-    ".git/",
-    ".vagrant/",
-    "var/cache/",
-    "vendor/"
+   	".git/",
+   	".vagrant/",
+   	"var/cache/",
+   	"vendor/"
   ]
 
   # Copy over ssh keys to vagrant
