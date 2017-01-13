@@ -19,12 +19,12 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-
+            
             new NoInc\SimpleStorefrontBundle\NoIncSimpleStorefrontBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
-
+            
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
@@ -42,20 +42,12 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        if (in_array($this->environment, array('dev', 'test'))) {
-            return '/var/storage/cache';
-        }
-
-        return parent::getCacheDir();
+        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        if (in_array($this->environment, array('dev', 'test'))) {
-            return '/var/storage/logs';
-        }
-
-        return parent::getLogDir();
+        return dirname(__DIR__).'/var/logs';
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
